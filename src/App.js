@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person.js';
 
 class App extends Component {
@@ -45,6 +46,18 @@ togglePersonShow = () => {
 
 }
   render() {
+    const style = {
+      background: 'green',
+      color: 'white',
+      font: 'inherit',
+      padding: '8px',
+      border: '1px solid blue',
+      cursor: 'pointer',
+      ':hover': {
+        background: ' lightgreen',
+        color: 'black'
+      }
+    };
 
     let persons = null;
 
@@ -61,17 +74,33 @@ togglePersonShow = () => {
         })}
         </div>
       );
+
+      style.background = 'red';
+      style[':hover'] = {
+        background: 'salmon',
+        color: 'black'
+      };
     }
 
+    const classes = [];
+    if (this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1){
+      classes.push('bold');
+    }
     return (
       <div className="App">
           <h1>Curso Udemy Practica</h1>
-          <button className='Boton'onClick={this.togglePersonShow}>Toggle persons</button>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <button 
+          style={style}
+          className='Boton'onClick={this.togglePersonShow}>Toggle persons</button>
         {persons}
         
       </div> 
     );
   }
 }
-export default App;
+export default Radium(App);
 
