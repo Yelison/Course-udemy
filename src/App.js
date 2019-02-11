@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person.js';
 
 class App extends Component {
@@ -16,6 +16,8 @@ class App extends Component {
     otherState: 'someother value',
     showPerson: false
   }
+
+
 
 nameChangerHandler = (event, id) =>{
   const personIndex = this.state.persons.findIndex(p => {
@@ -89,16 +91,18 @@ togglePersonShow = () => {
     if (this.state.persons.length <= 1){
       classes.push('bold');
     }
+
     return (
-      <div className="App">
-          <h1>Curso Udemy Practica</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <button 
-          style={style}
-          className='Boton'onClick={this.togglePersonShow}>Toggle persons</button>
-        {persons}
-        
-      </div> 
+      <StyleRoot>
+        <div className="App">
+            <h1>Curso Udemy Practica</h1>
+            <p className={classes.join(' ')}>This is really working!</p>
+            <button 
+            style={style}
+            className='Boton'onClick={this.togglePersonShow}>Toggle persons</button>
+          {persons}        
+        </div> 
+    </StyleRoot>
     );
   }
 }
